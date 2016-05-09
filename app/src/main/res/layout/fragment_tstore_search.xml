@@ -1,15 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.tacademy.eunbiminitest.tstore.TStoreSearchFragment">
 
-    <TextView
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Search"
-        android:id="@+id/textView6"
-        android:layout_gravity="center" />
+        android:text="검색"
+        android:id="@+id/search_btn"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-</FrameLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_edit"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/search_btn"
+        android:layout_toStartOf="@+id/search_btn" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="462dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_below="@+id/search_edit"
+        android:layout_alignRight="@+id/search_btn"
+        android:layout_alignEnd="@+id/search_btn"
+        android:layout_marginTop="103dp" />
+
+</RelativeLayout>
