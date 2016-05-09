@@ -9,9 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.tacademy.eunbiminitest.R;
-import com.example.tacademy.eunbiminitest.data.TStoreProduct;
+import com.example.tacademy.eunbiminitest.data.TStoreCategoryProduct;
+import com.example.tacademy.eunbiminitest.data.TStoreProducts;
+import com.example.tacademy.eunbiminitest.manager.NetworkManager;
+
+import java.io.IOException;
+
+import okhttp3.Request;
 
 public class TStoreAppListActivity extends AppCompatActivity {
 
@@ -37,7 +44,7 @@ public class TStoreAppListActivity extends AppCompatActivity {
 
         mAdapter.setOnItemClickListener(new ProductViewHolder.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, TStoreProduct product) {
+            public void onItemClick(View view, TStoreProducts.TStoreProduct product) {
                 Intent intent = new Intent(TStoreAppListActivity.this, TStoreDetailActivity.class);
                 intent.setData(Uri.parse(product.getWebUrl()));
                 startActivity(intent);
@@ -56,23 +63,34 @@ public class TStoreAppListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
     private void setData() {
-        for (int i = 0 ; i < 10 ; i++) {
-            TStoreProduct p = new TStoreProduct();
-            p.setCategoryPath(code);
-            p.setCharge(0);
-            p.setDescription("description " + i);
-            p.setDetailDescription("detail " + i);
-            p.setDownloadCount(i);
-            p.setName("name " + i);
-            p.setProductId("productid" + i);
-            p.setScore(0.0f);
-            p.setThumbnailUrl("url");
-            p.setTinyUrl("url");
-            p.setWebUrl("http://www.tstore.co.kr/userpoc/game/view?pid=0000699882");
-            mAdapter.add(p);
-        }
+        NetworkManager.getInstance().getTStoreCategoryProductList(this, code, 1, 10, NetworkManager.CATEGORY_PRODUCT_ORDER_R, new NetworkManager.OnResultListener<TStoreCategoryProduct>() {
+            @Override
+            public void onSuccess(Request request, TStoreCategoryProduct result) {
+                mAdapter.clear();
+                mAdapter.addAll(result.products.productList);
+            }
+
+            @Override
+            public void onFail(Request request, IOException exception) {
+                Toast.makeText(TStoreAppListActivity.this, "fail : " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        for (int i = 0 ; i < 10 ; i++) {
+//            TStoreProduct p = new TStoreProduct();
+//            p.setCategoryPath(code);
+//            p.setCharge(0);
+//            p.setDescription("description " + i);
+//            p.setDetailDescription("detail " + i);
+//            p.setDownloadCount(i);
+//            p.setName("name " + i);
+//            p.setProductId("productid" + i);
+//            p.setScore(0.0f);
+//            p.setThumbnailUrl("url");
+//            p.setTinyUrl("url");
+//            p.setWebUrl("http://www.tstore.co.kr/userpoc/game/view?pid=0000699882");
+//            mAdapter.add(p);
+//        }
     }
 
 }

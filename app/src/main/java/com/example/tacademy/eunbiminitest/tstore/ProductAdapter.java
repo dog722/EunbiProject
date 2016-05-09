@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tacademy.eunbiminitest.R;
-import com.example.tacademy.eunbiminitest.data.TStoreProduct;
+import com.example.tacademy.eunbiminitest.data.TStoreProducts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +15,19 @@ import java.util.List;
  * Created by Tacademy on 2016-05-09.
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    List<TStoreProduct> items = new ArrayList<>();
+    List<TStoreProducts.TStoreProduct> items = new ArrayList<>();
 
     public void clear() {
         items.clear();
         notifyDataSetChanged();
     }
 
-    public void add(TStoreProduct product) {
+    public void add(TStoreProducts.TStoreProduct product) {
         items.add(product);
         notifyDataSetChanged();
     }
 
-    public void addAll(List<TStoreProduct> items) {
+    public void addAll(List<TStoreProducts.TStoreProduct> items) {
         this.items.addAll(items);
         notifyDataSetChanged();
     }

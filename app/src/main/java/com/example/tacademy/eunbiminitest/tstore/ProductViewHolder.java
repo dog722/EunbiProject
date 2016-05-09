@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tacademy.eunbiminitest.R;
-import com.example.tacademy.eunbiminitest.data.TStoreProduct;
+import com.example.tacademy.eunbiminitest.data.TStoreProducts;
 
 /**
  * Created by Tacademy on 2016-05-09.
@@ -15,10 +15,10 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     ImageView thumbView;
     TextView nameView, descriptionView, scoreView, downloadView, detailView;
 
-    TStoreProduct product;
+    TStoreProducts.TStoreProduct product;
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, TStoreProduct product);
+        public void onItemClick(View view, TStoreProducts.TStoreProduct product);
     }
 
     OnItemClickListener mListener;
@@ -45,7 +45,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setProduct(TStoreProduct product) {
+    public void setProduct(TStoreProducts.TStoreProduct product) {
         this.product = product;
 
 
