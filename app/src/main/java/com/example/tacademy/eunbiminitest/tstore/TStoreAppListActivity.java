@@ -1,7 +1,6 @@
 package com.example.tacademy.eunbiminitest.tstore;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.tacademy.eunbiminitest.R;
 import com.example.tacademy.eunbiminitest.data.TStoreCategoryProduct;
-import com.example.tacademy.eunbiminitest.data.TStoreProducts;
+import com.example.tacademy.eunbiminitest.data.TStoreProduct;
 import com.example.tacademy.eunbiminitest.manager.NetworkManager;
 
 import java.io.IOException;
@@ -44,9 +43,10 @@ public class TStoreAppListActivity extends AppCompatActivity {
 
         mAdapter.setOnItemClickListener(new ProductViewHolder.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, TStoreProducts.TStoreProduct product) {
+            public void onItemClick(View view, TStoreProduct product) {
                 Intent intent = new Intent(TStoreAppListActivity.this, TStoreDetailActivity.class);
-                intent.setData(Uri.parse(product.getWebUrl()));
+//                intent.setData(Uri.parse(product.getWebUrl()));
+                intent.putExtra(TStoreDetailActivity.EXTRA_PRODUCT_ID, product.getProductId());
                 startActivity(intent);
             }
         });

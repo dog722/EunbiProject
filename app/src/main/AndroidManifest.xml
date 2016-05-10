@@ -3,10 +3,10 @@
     package="com.example.tacademy.eunbiminitest">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
-    <application
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -51,7 +51,8 @@
             android:name=".youtube.YoutubePlayerActivity"
             android:label="@string/title_activity_youtube_player"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".utils.BrowserActivity"></activity>
     </application>
 
 </manifest>

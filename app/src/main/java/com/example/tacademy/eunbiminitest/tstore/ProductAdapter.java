@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tacademy.eunbiminitest.R;
-import com.example.tacademy.eunbiminitest.data.TStoreProducts;
+import com.example.tacademy.eunbiminitest.data.TStoreProduct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +15,56 @@ import java.util.List;
  * Created by Tacademy on 2016-05-09.
  */
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    List<TStoreProducts.TStoreProduct> items = new ArrayList<>();
+    List<TStoreProduct> items = new ArrayList<>();
 
     public void clear() {
         items.clear();
         notifyDataSetChanged();
     }
 
-    public void add(TStoreProducts.TStoreProduct product) {
+    private int totalCount = 0;
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+
+    private int lastPage = 0;
+
+    public int getLastPage() {
+        return lastPage;
+    }
+
+    public void setLastPage(int lastPage) {
+        this.lastPage = lastPage;
+    }
+
+    private String keyword;
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public boolean isMore() {
+//        if (totalCount == 0) return false;
+//        if (totalCount > items.size()) return true;
+//        return false;
+        return totalCount == 0 ? false : (totalCount > items.size() ? true : false);
+    }
+
+    public void add(TStoreProduct product) {
         items.add(product);
         notifyDataSetChanged();
     }
 
-    public void addAll(List<TStoreProducts.TStoreProduct> items) {
+    public void addAll(List<TStoreProduct> items) {
         this.items.addAll(items);
         notifyDataSetChanged();
     }
