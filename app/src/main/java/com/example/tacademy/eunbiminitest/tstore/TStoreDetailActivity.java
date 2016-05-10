@@ -3,7 +3,7 @@ package com.example.tacademy.eunbiminitest.tstore;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -21,6 +21,7 @@ public class TStoreDetailActivity extends AppCompatActivity {
     RecyclerView listView;
     ProductDetailAdapter mAdapter;
     public static final String EXTRA_PRODUCT_ID = "productId";
+    GridLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,25 @@ public class TStoreDetailActivity extends AppCompatActivity {
         mAdapter = new ProductDetailAdapter();
 
         listView.setAdapter(mAdapter);
-        listView.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutManager = new GridLayoutManager(this ,2);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int type = mAdapter.getItemViewType(position);
+                if(type == ProductDetailAdapter.VIEW_TYPE_HEADER || type == ProductDetailAdapter.VIEW_TYPE_TITLE) {
+                    return 2;
+                }else{
+                    return 1;
+                }
+            }
+        });
+
+           listView.setLayoutManager(mLayoutManager);
+//        listView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent = getIntent();
         productId = intent.getStringExtra(EXTRA_PRODUCT_ID);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
