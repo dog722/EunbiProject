@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">EunbiMiniTest</string>
+    <string name="facebook_app_id">1595706920758255</string>
+    <string name="title_activity_facebook_photo_upload">FacebookPhotoUploadActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
